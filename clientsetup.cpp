@@ -40,7 +40,7 @@ ClientSetup::~ClientSetup()
   delete m_netSystem;
 }
 
-void ClientSetup::initData(int t_entityId)
+void ClientSetup::initData()
 {
   m_tcpSystem->connectToServer("127.0.0.1", 8008);
   QObject::connect(m_tcpSystem, &VeinNet::TcpSystem::sigConnnectionEstablished, this, &ClientSetup::sigReady);

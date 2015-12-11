@@ -42,7 +42,7 @@ Rectangle {
       initData(entityId);
     }
     onSigReady: {
-      clientSetup.initData(entityId)
+      clientSetup.initData()
     }
   }
   ClientSetup {
