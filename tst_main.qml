@@ -68,7 +68,7 @@ Rectangle {
     function test_000_entity() {
       compare((typeof tmpEntity) !== undefined, true, "TestEntity not available")
       compare(tmpEntity.entityId(), root.entityId, "Wrong entity id")
-      compare(tmpEntity.keys().length, 3, "Component count != 3") // order is nondeterministic so compare the count
+      compare(tmpEntity.keys().length, 3, "Component count != 3") // sort order is nondeterministic so compare the count
     }
 
     function test_001_component_data() {
@@ -84,7 +84,7 @@ Rectangle {
       tmpEntity.testObject = root.testObject
       tryCompare(tmpEntity, "testObject", root.testObject, root.timeout)
 
-      //comparing object identity/equality is an implementation detail blackmagic of QML TestCase so this test is rather non obvious
+      //comparing object identity/equality is an implementation detail blackmagic of QML TestCase, so this test is rather non obvious
       //to validate the correctness of this test, compare to some other object to let the test fail
       expectFailContinue("", "This check verifies that the test can actually fail")
       compare(tmpEntity, "testObject", {"name": "wrong"})
@@ -93,7 +93,7 @@ Rectangle {
     function test_003_negativeEntity() {
       warn("ignore next warning about 'No entity found...'")
       var someVar = VeinEntity.getEntity("nondescript")
-      compare(someVar, null, "Returned invalid entity")
+      compare(someVar, null, "Returned invalid non null entity")
     }
   }
 
