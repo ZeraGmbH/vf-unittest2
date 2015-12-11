@@ -39,7 +39,7 @@ Rectangle {
 
   ServerSetup {
     Component.onCompleted: {
-      initData(entityId);
+      initData(entityId, entityName);
     }
     onSigReady: {
       clientSetup.initData()
@@ -66,7 +66,7 @@ Rectangle {
 
 
     function test_000_entity() {
-      compare((typeof tmpEntity) !== undefined, true, "TestEntity not available")
+      compare((typeof tmpEntity) !== undefined, true, "Entity not available")
       compare(tmpEntity.entityId(), root.entityId, "Wrong entity id")
       compare(tmpEntity.keys().length, 3, "Component count != 3") // sort order is nondeterministic so compare the count
     }

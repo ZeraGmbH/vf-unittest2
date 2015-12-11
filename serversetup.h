@@ -31,7 +31,7 @@ signals:
   void sigReady();
 
 public slots:
-  void initData(int t_entityId);
+  void initData(int t_entityId, const QString &t_entityName);
 
 private:
   VeinEvent::EventHandler *m_evHandler;

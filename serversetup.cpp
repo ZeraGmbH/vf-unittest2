@@ -47,7 +47,7 @@ ServerSetup::~ServerSetup()
   delete m_validator;
 }
 
-void ServerSetup::initData(int t_entityId)
+void ServerSetup::initData(int t_entityId, const QString &t_entityName)
 {
   QStringList componentList;
 
@@ -66,8 +66,8 @@ void ServerSetup::initData(int t_entityId)
   cData = new VeinComponent::ComponentData();
   cData->setEntityId(t_entityId);
   cData->setCommand(VeinComponent::ComponentData::Command::CCMD_ADD);
-  cData->setComponentName("EntityName"); /// @todo remove hardcoded
-  cData->setNewValue("TestEntity");
+  cData->setComponentName(VeinNet::IntrospectionSystem::NAME_COMPONENT);
+  cData->setNewValue(t_entityName);
 
   tmpEvent = new VeinEvent::CommandEvent(VeinEvent::CommandEvent::EventSubtype::TRANSACTION, cData);
   QCoreApplication::postEvent(m_evHandler, tmpEvent);
