@@ -1,8 +1,7 @@
 import QtQuick 2.0
 import QtTest 1.1
 import VeinEntity 1.0
-import ServerSetup 1.0
-import ClientSetup 1.0
+import TestSetup 1.0
 
 
 Rectangle {
@@ -84,10 +83,14 @@ Rectangle {
       tmpEntity.testObject = root.testObject
       tryCompare(tmpEntity, "testObject", root.testObject, root.timeout)
 
+
       //comparing object identity/equality is an implementation detail blackmagic of QML TestCase, so this test is rather non obvious
       //to validate the correctness of this test, compare to some other object to let the test fail
       expectFailContinue("", "This check verifies that the test can actually fail")
-      compare(tmpEntity, "testObject", {"name": "wrong"})
+
+      var tObject = root.testObject
+      tObject.name = root.testObject.name+"_wrong"
+      compare(tmpEntity.testObject, tObject, "This check verifies the test")
     }
 
     function test_003_negativeEntity() {

@@ -17,8 +17,8 @@ int main(int argc, char **argv)
   QString categoryLoggingFormat = "%{if-debug}DD%{endif}%{if-warning}WW%{endif}%{if-critical}EE%{endif}%{if-fatal}FATAL%{endif} %{category} %{message}";
   qSetMessagePattern(categoryLoggingFormat);
 
-  qmlRegisterType<ServerSetup>("ServerSetup", 1, 0, "ServerSetup");
-  qmlRegisterType<ClientSetup>("ClientSetup", 1, 0, "ClientSetup");
+  qmlRegisterType<ServerSetup>("TestSetup", 1, 0, "ServerSetup");
+  qmlRegisterType<ClientSetup>("TestSetup", 1, 0, "ClientSetup");
 
   //register QML type
   VeinApiQml::QmlWrapper::registerTypes();
