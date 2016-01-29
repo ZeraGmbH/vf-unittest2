@@ -67,6 +67,9 @@ Rectangle {
     function test_000_entity() {
       compare((typeof tmpEntity) !== undefined, true, "Entity not available")
       compare(tmpEntity.entityId(), root.entityId, "Wrong entity id")
+      verify(tmpEntity.hasComponent("testVariant"), "No entity 'testVariant'")
+      verify(tmpEntity.hasComponent("testObject"), "No entity 'testObject'")
+      verify(tmpEntity.hasComponent("EntityName"), "No entity 'EntityName'")
       compare(tmpEntity.keys().length, 3, "Component count != 3") // sort order is nondeterministic so compare the count
     }
 

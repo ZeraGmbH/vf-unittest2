@@ -12,6 +12,7 @@
 
 int main(int argc, char **argv)
 {
+  qDebug() << QString("Qt version: %1").arg(qVersion()) << QString("GCC version: %1.%2.%3").arg(__GNUC__).arg(__GNUC_MINOR__).arg(__GNUC_PATCHLEVEL__);
   QStringList loggingFilters = QStringList() << QString("*.debug=false");
   QLoggingCategory::setFilterRules(loggingFilters.join("\n"));
   QString categoryLoggingFormat = "%{if-debug}DD%{endif}%{if-warning}WW%{endif}%{if-critical}EE%{endif}%{if-fatal}FATAL%{endif} %{category} %{message}";
