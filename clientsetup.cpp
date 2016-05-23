@@ -38,6 +38,7 @@ ClientSetup::~ClientSetup()
   delete m_evHandler;
   delete m_tcpSystem;
   delete m_netSystem;
+  VeinApiQml::VeinQml::getStaticInstance()->deleteLater();
 }
 
 void ClientSetup::initData()
