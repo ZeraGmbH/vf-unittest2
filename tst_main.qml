@@ -11,7 +11,7 @@ Rectangle {
 
   readonly property int entityId: 100
   readonly property string entityName : "TestEntity";
-  readonly property int timeout: 500 //msecs
+  readonly property int timeout: 5000 //msecs
 
   readonly property var testObject: {
     "name" : "testObject",
