@@ -21,8 +21,5 @@ int main(int argc, char **argv)
   qmlRegisterType<ServerSetup>("TestSetup", 1, 0, "ServerSetup");
   qmlRegisterType<ClientSetup>("TestSetup", 1, 0, "ClientSetup");
 
-  //register QML type
-  VeinApiQml::QmlWrapper::registerTypes();
-
   return quick_test_main(argc, argv, "vein-framework unittest", QUICK_TEST_SOURCE_DIR);
 }
