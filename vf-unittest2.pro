@@ -1,3 +1,6 @@
+#experimental code
+VF_NO_DEPLOY = 1
+
 TEMPLATE = app
 
 QT += qml quick
