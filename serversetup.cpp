@@ -65,7 +65,7 @@ void ServerSetup::initData(int t_entityId, const QString &t_entityName)
   cData = new VeinComponent::ComponentData();
   cData->setEntityId(t_entityId);
   cData->setCommand(VeinComponent::ComponentData::Command::CCMD_ADD);
-  cData->setComponentName(VeinNet::IntrospectionSystem::NAME_COMPONENT);
+  cData->setComponentName(VeinNet::IntrospectionSystem::s_nameComponent);
   cData->setNewValue(t_entityName);
 
   tmpEvent = new VeinEvent::CommandEvent(VeinEvent::CommandEvent::EventSubtype::TRANSACTION, cData);
