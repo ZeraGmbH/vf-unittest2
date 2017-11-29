@@ -10,8 +10,10 @@
 #include <vs_veinhash.h>
 #include <vcmp_componentdata.h>
 #include <vcmp_entitydata.h>
+#include <vcmp_remoteproceduredata.h>
 #include <ve_commandevent.h>
 
+#include "rpctest.h"
 
 ServerSetup::ServerSetup(QObject *t_parent) : QObject(t_parent)
 {
@@ -19,13 +21,15 @@ ServerSetup::ServerSetup(QObject *t_parent) : QObject(t_parent)
 
   m_validator = new VeinEvent::Validator(this);
   m_storSystem = new VeinStorage::VeinHash(this);
-  m_introspectionSystem = new VeinNet::IntrospectionSystem(m_storSystem, this);
+  m_introspectionSystem = new VeinNet::IntrospectionSystem(this);
   m_netSystem = new VeinNet::NetworkSystem(this);
   m_tcpSystem = new VeinNet::TcpSystem(this);
+  m_rpcTest = new RPCTest(this);
 
   m_netSystem->setOperationMode(VeinNet::NetworkSystem::VNOM_SUBSCRIPTION);
 
   m_subSystems.append(m_validator);
+  m_subSystems.append(m_rpcTest);
   m_subSystems.append(m_storSystem);
   m_subSystems.append(m_introspectionSystem);
   m_subSystems.append(m_netSystem);
@@ -44,6 +48,7 @@ ServerSetup::~ServerSetup()
   delete m_introspectionSystem;
   delete m_storSystem;
   delete m_validator;
+  delete m_rpcTest;
 }
 
 void ServerSetup::initData(int t_entityId, const QString &t_entityName)
@@ -55,7 +60,7 @@ void ServerSetup::initData(int t_entityId, const QString &t_entityName)
   eData->setCommand(VeinComponent::EntityData::Command::ECMD_ADD);
   eData->setEntityId(t_entityId);
 
-  VeinEvent::CommandEvent *tmpEvent = new VeinEvent::CommandEvent(VeinEvent::CommandEvent::EventSubtype::TRANSACTION, eData);
+  VeinEvent::CommandEvent *tmpEvent = new VeinEvent::CommandEvent(VeinEvent::CommandEvent::EventSubtype::NOTIFICATION, eData);
   QCoreApplication::postEvent(m_evHandler, tmpEvent);
   tmpEvent = 0;
 
@@ -68,7 +73,7 @@ void ServerSetup::initData(int t_entityId, const QString &t_entityName)
   cData->setComponentName(VeinNet::IntrospectionSystem::s_nameComponent);
   cData->setNewValue(t_entityName);
 
-  tmpEvent = new VeinEvent::CommandEvent(VeinEvent::CommandEvent::EventSubtype::TRANSACTION, cData);
+  tmpEvent = new VeinEvent::CommandEvent(VeinEvent::CommandEvent::EventSubtype::NOTIFICATION, cData);
   QCoreApplication::postEvent(m_evHandler, tmpEvent);
   tmpEvent = 0;
 
@@ -86,7 +91,7 @@ void ServerSetup::initData(int t_entityId, const QString &t_entityName)
     cData->setComponentName(componentName);
     cData->setNewValue(0);
 
-    tmpEvent = new VeinEvent::CommandEvent(VeinEvent::CommandEvent::EventSubtype::TRANSACTION, cData);
+    tmpEvent = new VeinEvent::CommandEvent(VeinEvent::CommandEvent::EventSubtype::NOTIFICATION, cData);
     QCoreApplication::postEvent(m_evHandler, tmpEvent);
     cData = 0;
   }
@@ -94,6 +99,7 @@ void ServerSetup::initData(int t_entityId, const QString &t_entityName)
   //finally start the tcp server
   m_tcpSystem->startServer(8008);
 
+  m_rpcTest->initData(m_evHandler, t_entityId);
   emit sigReady();
 }
 

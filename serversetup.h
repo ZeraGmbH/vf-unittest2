@@ -19,6 +19,8 @@ namespace VeinNet {
   class TcpSystem;
 }
 
+class RPCTest;
+
 class ServerSetup : public QObject
 {
   Q_OBJECT
@@ -41,6 +43,7 @@ private:
   VeinNet::IntrospectionSystem *m_introspectionSystem;
   VeinNet::NetworkSystem *m_netSystem;
   VeinNet::TcpSystem *m_tcpSystem;
+  RPCTest *m_rpcTest;
 
   QList<VeinEvent::EventSystem*> m_subSystems;
 

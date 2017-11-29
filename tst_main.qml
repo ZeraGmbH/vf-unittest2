@@ -53,14 +53,29 @@ Rectangle {
 
 
 
+
+
   TestCase {
     id: unitTests
     name: "unittests"
     when: VeinEntity.state===VeinEntity.VQ_LOADED
     property QtObject tmpEntity;
+    property var rpcCallback: ({});
+    property bool rpcWasCalled: false;
 
     function initTestCase() {
       tmpEntity = VeinEntity.getEntity(root.entityName)
+    }
+
+    Connections {
+      target: unitTests.tmpEntity
+      onSigRPCFinished: {
+        if(unitTests.rpcCallback[t_identifier] !== undefined)
+        {
+          unitTests.rpcCallback[t_identifier](t_identifier, t_resultData);
+          delete unitTests.rpcCallback[t_identifier]; //remove the entry
+        }
+      }
     }
 
 
@@ -97,17 +112,42 @@ Rectangle {
     }
 
     function test_003_negativeEntity() {
-      warn("ignore next warning about 'No entity found...'")
+      ignoreWarning('No entity found with name: "nondescript"');
       var someVar = VeinEntity.getEntity("nondescript")
       compare(someVar, null, "Returned invalid non null entity")
+    }
+
+    function test_004_remoteProcedure() {
+      var paramObject = { something: 10 }
+      unitTests.rpcCallback[tmpEntity.invokeRPC("unitTestParamReturn()", paramObject)] = function (identifier, data) {
+        unitTests.rpcWasCalled = true;
+        compare(data["RemoteProcedureData::resultCode"], 0, "Test rpc call result code")
+        compare(data["RemoteProcedureData::callParameters"].something, 10, "Test rpc call parameters")
+        compare(data["RemoteProcedureData::callID"], identifier, "Test rpc call identifier")
+      };
+      tryCompare(unitTests, "rpcWasCalled", true, root.timeout, "Check if the rpc was actually called")
     }
   }
 
   TestCase {
+    id: benchmarks
     name: "benchmarks"
     when: unitTests.completed
 
     property QtObject tmpEntity;
+    property var rpcCallback: ({});
+    property bool rpcWasCalled: false;
+
+    Connections {
+      target: benchmarks.tmpEntity
+      onSigRPCFinished: {
+        if(benchmarks.rpcCallback[t_identifier] !== undefined)
+        {
+          benchmarks.rpcCallback[t_identifier](t_identifier, t_resultData);
+          delete benchmarks.rpcCallback[t_identifier]; //remove the entry
+        }
+      }
+    }
 
     function initTestCase() {
       tmpEntity = VeinEntity.getEntity(root.entityName)
@@ -131,6 +171,17 @@ Rectangle {
       tmpEntity.testObject = 0
       tmpEntity.testObject = root.testObject
       tryCompare(tmpEntity, "testObject", root.testObject, root.timeout)
+    }
+
+    function  benchmark_003_testRPC() {
+      var paramObject = { something: 10 }
+      benchmarks.rpcCallback[tmpEntity.invokeRPC("unitTestParamReturn()", paramObject)] = function (identifier, data) {
+        compare(data["RemoteProcedureData::resultCode"], 0, "Test rpc call result code")
+        compare(data["RemoteProcedureData::callParameters"].something, 10, "Test rpc call parameters")
+        compare(data["RemoteProcedureData::callID"], identifier, "Test rpc call identifier")
+        benchmarks.rpcWasCalled = true;
+      };
+      tryCompare(benchmarks, "rpcWasCalled", true, root.timeout, "Check if the rpc was actually called")
     }
   }
 }

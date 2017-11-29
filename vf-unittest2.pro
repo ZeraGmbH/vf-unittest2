@@ -10,7 +10,8 @@ CONFIG += warn_on qmltestcase
 
 SOURCES += main.cpp \
     serversetup.cpp \
-    clientsetup.cpp
+    clientsetup.cpp \
+    rpctest.cpp
 
 RESOURCES += qml.qrc
 
@@ -40,4 +41,5 @@ include(deployment.pri)
 
 HEADERS += \
     serversetup.h \
-    clientsetup.h
+    clientsetup.h \
+    rpctest.h
