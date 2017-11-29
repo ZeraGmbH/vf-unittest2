@@ -32,6 +32,8 @@ unittest
 *.pro.user*
 *.qmlproject.user*
 *.pluginspec
+#qml cache
+*.qmlc
 
 #ignore the doc directory
 doc/*
