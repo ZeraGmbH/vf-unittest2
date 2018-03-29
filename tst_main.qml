@@ -174,6 +174,7 @@ Rectangle {
     }
 
     function  benchmark_003_testRPC() {
+      benchmarks.rpcWasCalled = false;
       var paramObject = { something: 10 }
       benchmarks.rpcCallback[tmpEntity.invokeRPC("unitTestParamReturn()", paramObject)] = function (identifier, data) {
         compare(data["RemoteProcedureData::resultCode"], 0, "Test rpc call result code")
