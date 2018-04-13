@@ -66,7 +66,7 @@ void ServerSetup::initData(int t_entityId, const QString &t_entityName)
 
 
   //set up the introspection
-  VeinComponent::ComponentData *cData=0;
+  VeinComponent::ComponentData *cData=nullptr;
   cData = new VeinComponent::ComponentData();
   cData->setEntityId(t_entityId);
   cData->setCommand(VeinComponent::ComponentData::Command::CCMD_ADD);

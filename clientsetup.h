@@ -21,7 +21,7 @@ class ClientSetup : public QObject
 {
   Q_OBJECT
 public:
-  explicit ClientSetup(QObject *t_parent = 0);
+  explicit ClientSetup(QObject *t_parent = nullptr);
   ~ClientSetup();
 
 signals:

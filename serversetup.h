@@ -26,7 +26,7 @@ class ServerSetup : public QObject
   Q_OBJECT
 
 public:
-  explicit ServerSetup(QObject *t_parent = 0);
+  explicit ServerSetup(QObject *t_parent = nullptr);
   ~ServerSetup();
 
 signals:

@@ -25,7 +25,7 @@ class RPCTest : public VeinEvent::EventSystem
 {
   Q_OBJECT
 public:
-  explicit RPCTest(QObject *t_parent = 0);
+  explicit RPCTest(QObject *t_parent = nullptr);
   void initData(QObject *t_eventHandler, int t_entityId);
 
   // EventSystem interface
