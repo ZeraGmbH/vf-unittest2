@@ -47,7 +47,7 @@ Rectangle {
   ClientSetup {
     id: clientSetup
     onSigReady: {
-      VeinEntity.setRequiredIds([root.entityId])
+      VeinEntity.entitySubscribeById(root.entityId);
     }
   }
 
