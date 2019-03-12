@@ -18,6 +18,7 @@ int main(int argc, char **argv)
   QString categoryLoggingFormat = "%{if-debug}DD%{endif}%{if-warning}WW%{endif}%{if-critical}EE%{endif}%{if-fatal}FATAL%{endif} %{category} %{message}";
   qSetMessagePattern(categoryLoggingFormat);
 
+  using namespace VFUnitTest;
   qmlRegisterType<ServerSetup>("TestSetup", 1, 0, "ServerSetup");
   qmlRegisterType<ClientSetup>("TestSetup", 1, 0, "ClientSetup");
 

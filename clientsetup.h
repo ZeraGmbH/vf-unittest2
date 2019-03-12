@@ -17,25 +17,28 @@ namespace VeinApiQml {
   class VeinQml;
 }
 
-class ClientSetup : public QObject
+namespace VFUnitTest
 {
-  Q_OBJECT
-public:
-  explicit ClientSetup(QObject *t_parent = nullptr);
-  ~ClientSetup();
+  class ClientSetup : public QObject
+  {
+    Q_OBJECT
+  public:
+    explicit ClientSetup(QObject *t_parent = nullptr);
+    ~ClientSetup();
 
-signals:
-  void sigReady();
+  signals:
+    void sigReady();
 
-public slots:
-  void initData();
+  public slots:
+    void initData();
 
-private:
-  VeinEvent::EventHandler* m_evHandler;
-  VeinNet::NetworkSystem *m_netSystem;
-  VeinNet::TcpSystem *m_tcpSystem;
+  private:
+    VeinEvent::EventHandler* m_evHandler;
+    VeinNet::NetworkSystem *m_netSystem;
+    VeinNet::TcpSystem *m_tcpSystem;
 
-  QList<VeinEvent::EventSystem*> m_subSystems;
-};
+    QList<VeinEvent::EventSystem*> m_subSystems;
+  };
+}
 
 #endif // CLIENTSETUP_H

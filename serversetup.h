@@ -19,34 +19,37 @@ namespace VeinNet {
   class TcpSystem;
 }
 
-class RPCTest;
-
-class ServerSetup : public QObject
+namespace VFUnitTest
 {
-  Q_OBJECT
+  class RPCTest;
 
-public:
-  explicit ServerSetup(QObject *t_parent = nullptr);
-  ~ServerSetup();
+  class ServerSetup : public QObject
+  {
+    Q_OBJECT
 
-signals:
-  void sigReady();
+  public:
+    explicit ServerSetup(QObject *t_parent = nullptr);
+    ~ServerSetup();
 
-public slots:
-  void initData(int t_entityId, const QString &t_entityName);
+  signals:
+    void sigReady();
 
-private:
-  VeinEvent::EventHandler *m_evHandler;
+  public slots:
+    void initData(int t_entityId, const QString &t_entityName);
 
-  VeinEvent::Validator *m_validator;
-  VeinStorage::VeinHash *m_storSystem;
-  VeinNet::IntrospectionSystem *m_introspectionSystem;
-  VeinNet::NetworkSystem *m_netSystem;
-  VeinNet::TcpSystem *m_tcpSystem;
-  RPCTest *m_rpcTest;
+  private:
+    VeinEvent::EventHandler *m_evHandler;
 
-  QList<VeinEvent::EventSystem*> m_subSystems;
+    VeinEvent::Validator *m_validator;
+    VeinStorage::VeinHash *m_storSystem;
+    VeinNet::IntrospectionSystem *m_introspectionSystem;
+    VeinNet::NetworkSystem *m_netSystem;
+    VeinNet::TcpSystem *m_tcpSystem;
+    RPCTest *m_rpcTest;
 
-};
+    QList<VeinEvent::EventSystem*> m_subSystems;
+
+  };
+}
 
 #endif // SERVERSETUP_H
