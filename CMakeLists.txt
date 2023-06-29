@@ -14,7 +14,6 @@ include(FeatureSummary)
 include(GNUInstallDirs)
 
 find_package(Qt5 COMPONENTS Quick Core Qml Sql Network Test QuickTest CONFIG REQUIRED)
-find_package(VfQml REQUIRED)
 find_package(VfLogger REQUIRED)
 
 #set st_main.qml path for qt unittest
@@ -53,8 +52,8 @@ target_link_libraries(VfUnittest
     Zera::VfStorageHash
     Zera::VfNet2
     Zera::VfTcp
+    Zera::VfQml
     VeinMeta::VfLogger
-    VeinMeta::VfQml
     )
 
 
