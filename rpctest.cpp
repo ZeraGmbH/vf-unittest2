@@ -30,9 +30,8 @@ namespace VFUnitTest
     return retVal;
   }
 
-  bool RPCTest::processEvent(QEvent *t_event)
+  void RPCTest::processEvent(QEvent *t_event)
   {
-    bool retVal = false;
     if(t_event->type() == VeinEvent::CommandEvent::eventType())
     {
       VeinEvent::CommandEvent *cEvent = nullptr;
@@ -47,10 +46,8 @@ namespace VFUnitTest
           Q_ASSERT(rpcData != nullptr);
           if(rpcData->command() == VeinComponent::RemoteProcedureData::Command::RPCMD_CALL)
           {
-            retVal = true;
             if(m_remoteProcedures.contains(rpcData->procedureName()))
             {
-              retVal = true;
               VeinComponent::RemoteProcedureData *resultData = new VeinComponent::RemoteProcedureData();
               resultData->setCommand(VeinComponent::RemoteProcedureData::Command::RPCMD_RESULT);
               resultData->setEntityId(rpcData->entityId());
@@ -68,7 +65,6 @@ namespace VFUnitTest
             }
             else //unknown procedure
             {
-              retVal = true;
               qDebug() << "No remote procedure with entityId:" << m_entityId << "name:" << rpcData->procedureName();
               VF_ASSERT(false, QStringC(QString("No remote procedure with entityId: %1 name: %2").arg(m_entityId).arg(rpcData->procedureName())));
               VeinComponent::ErrorData *eData = new VeinComponent::ErrorData();
@@ -86,7 +82,6 @@ namespace VFUnitTest
         }
       }
     }
-    return retVal;
   }
 
   constexpr QLatin1String RPCTest::s_unitTestParamReturnProcedureName;
