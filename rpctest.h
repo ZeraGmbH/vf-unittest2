@@ -29,10 +29,7 @@ namespace VFUnitTest
   public:
     explicit RPCTest(QObject *t_parent = nullptr);
     void initData(QObject *t_eventHandler, int t_entityId);
-
-    // EventSystem interface
-  public:
-    bool processEvent(QEvent *t_event) override;
+    void processEvent(QEvent *t_event) override;
 
   private:
     VF_RPC(unitTestParamReturn, "unitTestParamReturn()", "unit test the rpc stuff")
