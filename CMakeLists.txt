@@ -47,7 +47,6 @@ target_link_libraries(VfUnittest
     Qt5::Test
     Qt5::QuickTest 
     Zera::VfEvent
-    Zera::VfHelpers
     Zera::VfComponent
     Zera::VfStorageHash
     Zera::VfNet2
