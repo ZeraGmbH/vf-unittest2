@@ -40,7 +40,6 @@ namespace VFUnitTest
   private:
     VeinEvent::EventHandler *m_evHandler;
 
-    VeinEvent::Validator *m_validator;
     VeinStorage::VeinHash *m_storSystem;
     VeinNet::IntrospectionSystem *m_introspectionSystem;
     VeinNet::NetworkSystem *m_netSystem;

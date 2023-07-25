@@ -21,7 +21,6 @@ namespace VFUnitTest
   {
     m_evHandler = new VeinEvent::EventHandler(this);
 
-    m_validator = new VeinEvent::Validator(this);
     m_storSystem = new VeinStorage::VeinHash(this);
     m_introspectionSystem = new VeinNet::IntrospectionSystem(this);
     m_netSystem = new VeinNet::NetworkSystem(this);
@@ -30,7 +29,6 @@ namespace VFUnitTest
 
     m_netSystem->setOperationMode(VeinNet::NetworkSystem::VNOM_SUBSCRIPTION);
 
-    m_subSystems.append(m_validator);
     m_subSystems.append(m_rpcTest);
     m_subSystems.append(m_storSystem);
     m_subSystems.append(m_introspectionSystem);
@@ -49,7 +47,6 @@ namespace VFUnitTest
     delete m_netSystem;
     delete m_introspectionSystem;
     delete m_storSystem;
-    delete m_validator;
     delete m_rpcTest;
   }
 
