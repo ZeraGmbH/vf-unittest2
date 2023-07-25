@@ -3,7 +3,6 @@
 #include <QCoreApplication>
 
 #include <ve_eventhandler.h>
-#include <ve_validator.h>
 #include <vn_networksystem.h>
 #include <vn_tcpsystem.h>
 #include <vn_introspectionsystem.h>
