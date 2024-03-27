@@ -21,7 +21,7 @@ namespace VFUnitTest
 
 
     QObject::connect(m_tcpSystem, &VeinNet::TcpSystem::sigSendEvent, [&](QEvent *t_event){
-      if(t_event->type()==VeinNet::NetworkStatusEvent::getEventType())
+      if(t_event->type()==VeinNet::NetworkStatusEvent::getQEventType())
       {
         qCritical() << "Aborting: Network failed";
       }

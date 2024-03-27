@@ -32,7 +32,7 @@ namespace VFUnitTest
 
   void RPCTest::processEvent(QEvent *t_event)
   {
-    if(t_event->type() == VeinEvent::CommandEvent::eventType())
+    if(t_event->type() == VeinEvent::CommandEvent::getQEventType())
     {
       VeinEvent::CommandEvent *cEvent = nullptr;
       cEvent = static_cast<VeinEvent::CommandEvent *>(t_event);
