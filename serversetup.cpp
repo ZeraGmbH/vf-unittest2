@@ -6,7 +6,7 @@
 #include <vn_networksystem.h>
 #include <vn_tcpsystem.h>
 #include <vn_introspectionsystem.h>
-#include <vs_veinhash.h>
+#include <vs_storageeventsystem.h>
 #include <vcmp_componentdata.h>
 #include <vcmp_entitydata.h>
 #include <vcmp_remoteproceduredata.h>
