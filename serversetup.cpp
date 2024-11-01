@@ -20,7 +20,7 @@ namespace VFUnitTest
   {
     m_evHandler = new VeinEvent::EventHandler(this);
 
-    m_storSystem = new VeinStorage::VeinHash(this);
+    m_storSystem = new VeinStorage::StorageEventSystem(this);
     m_introspectionSystem = new VeinNet::IntrospectionSystem(this);
     m_netSystem = new VeinNet::NetworkSystem(this);
     m_tcpSystem = new VeinNet::TcpSystem(this);

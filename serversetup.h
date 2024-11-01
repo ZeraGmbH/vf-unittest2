@@ -10,7 +10,7 @@ namespace VeinEvent {
 }
 
 namespace VeinStorage {
-  class VeinHash;
+  class StorageEventSystem;
 }
 
 namespace VeinNet {
@@ -40,7 +40,7 @@ namespace VFUnitTest
   private:
     VeinEvent::EventHandler *m_evHandler;
 
-    VeinStorage::VeinHash *m_storSystem;
+    VeinStorage::StorageEventSystem *m_storSystem;
     VeinNet::IntrospectionSystem *m_introspectionSystem;
     VeinNet::NetworkSystem *m_netSystem;
     VeinNet::TcpSystem *m_tcpSystem;
